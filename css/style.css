@@ -1,0 +1,78 @@
+body{background:#000;width: 100%;overflow: hidden;font-family: Helvetica}#target{position:absolute;left:0px;top:0px;padding:0;margin:0;width: 100%;height: auto;}canvas {padding:0;margin:0;max-width:100% !important;    position: absolute;
+    left: 0px;
+    top: 0px;}
+#targetcolor {
+    background: #fff;
+}
+#info {
+    position: absolute;
+    right: -350px;
+    top: 0;
+    width: 400px;
+    overflow: auto;
+    background: #fff;
+    color: #000;
+    z-index: 999999;
+    transition: all .6s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 0;
+}
+#info button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid #9e9e9e 1px;
+    background: #f7f7f7;
+    cursor: pointer;
+}
+#info.open {
+    right: 0;
+}
+#info table td:first-child {
+    background: rgba(241, 241, 241, 0.33)
+}
+#container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.cresult {
+    background: #000;
+}
+#arrows {
+    cursor: pointer;
+    width: 100px;
+}
+.module {
+    border: solid 1px #9e9e9e;
+    border-radius: 5px;
+    margin: 5px 3px;
+    padding: 10px 3px;
+    text-align: center;
+    background: #f7f7f7;
+    position: relative;
+}
+.colorpicker td {
+    background: #fff;
+    height: 30px;
+}
+.colorpicker .red {
+    background: #ff0000 !important;
+}
+.colorpicker .green {
+    background: #800000 !important;
+}
+.colorpicker .blue {
+    background: #0000ff !important;
+}
+.overflow {
+    overflow: auto;
+}
+.remove {
+    border: solid 1px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    left: 7px;
+    padding: 2px 5px 0 5px;
+    top: 4px;
+}
