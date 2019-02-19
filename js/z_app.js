@@ -166,7 +166,7 @@ Target.prototype.loop = function() {
     }
 }
 /**
- * draw
+ * draw - this is where I actually draw the effect of the light
  * @param {Number}
  * @param {Number}
  * @param {Number}
@@ -175,11 +175,17 @@ Target.prototype.loop = function() {
  * @param {String}
  * */
 Target.prototype.draw = function(x,y,w,h,color,lightcolor) {
+    // @var - localize the resolution
     let res = RESOLUTION;
+    // draw a white square
     $w.canvas.rectangle(this.i,x,y,w,h,'#fff');
+    // for the size of the square rasterize and chnage the color of the pixel based on the amout of light hitting it
+    // the squares are WHITE but they are drawn black because of the absence of reflective light
     for(let xx=0; xx<w; xx+=res) {
         for(let yy=0; yy<h; yy+=res) {
+            // @var - init
              let c = null, cc = 0, cl = $w.objects.Light.length, min = {d:null,k:null};
+             
              for(let j=0; j<cl; j++) {
                    let d = $w.motion.distance_to_point($w.objects.Light[j].x,$w.objects.Light[j].y,(x+xx),(y+yy));
                    //d += $w.objects.Light[j].z;
@@ -193,9 +199,10 @@ Target.prototype.draw = function(x,y,w,h,color,lightcolor) {
                         }
                    }
              }
+             // calculate the intensity of the light
              cc = (1 - ((min.d/4)/$w.objects.Light[min.k].light_intensity));
              //cc = (1 - (($w.objects.Light[min.k].light_intensity) / (min.d*min.d)));
-
+            // determine how the light will blend
              let bool = true;
              if (cc < -1) {
                 c = '#000000';
@@ -205,7 +212,9 @@ Target.prototype.draw = function(x,y,w,h,color,lightcolor) {
                 c = '#ffffff';
                 bool = false;
             }
+            // blend the light
             if(bool)c = shadeBlendConvert(cc,color);
+            // draw the square
             $w.canvas.rectangle(this.i,(x+xx),(y+yy),res,res,c,'fill');
         }
     }               
